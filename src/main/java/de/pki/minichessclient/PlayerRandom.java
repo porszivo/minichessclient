@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class PlayerRandom {
 
-    private char color;
+    private Color color;
     private Random rand = new Random();
 
     /**
@@ -13,7 +13,7 @@ public class PlayerRandom {
      *
      * @param color color of the player
      */
-    PlayerRandom(char color) {
+    PlayerRandom(Color color) {
         this.color = color;
     }
 

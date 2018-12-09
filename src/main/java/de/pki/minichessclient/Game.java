@@ -13,20 +13,20 @@ public class Game {
      */
     public static void main(String[] args) {
         GameState gameState = new GameState();
-        PlayerRandom whitePlayer = new PlayerRandom('W');
-        PlayerRandom blackPlayer = new PlayerRandom('B');
+        PlayerRandom whitePlayer = new PlayerRandom(Color.WHITE);
+        PlayerRandom blackPlayer = new PlayerRandom(Color.BLACK);
 
         while (true) {
             Move nextMove = null;
 
-            if (gameState.getCurrentPlayer() == 'W') {
+            if (gameState.getCurrentPlayer() == Color.WHITE) {
                 nextMove = whitePlayer.pickMove(gameState.getBoard());
-            } else if (gameState.getCurrentPlayer() == 'B') {
+            } else if (gameState.getCurrentPlayer() == Color.BLACK) {
                 nextMove = blackPlayer.pickMove(gameState.getBoard());
             }
+            System.out.println(nextMove);
             gameState.moveByMove(nextMove);
 
-            System.out.println(nextMove);
             System.out.println("------------------\n");
             System.out.println(gameState.getCurrentStateToString() + "\n");
         }

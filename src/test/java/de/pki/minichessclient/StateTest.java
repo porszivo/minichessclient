@@ -46,8 +46,8 @@ public class StateTest {
 
     @Test
     public void shouldReturnInitialPlayer() {
-        char initialPlayer = 'W';
-        char currentPlayer = state.getCurrentPlayer();
+        Color initialPlayer = Color.WHITE;
+        Color currentPlayer = state.getCurrentPlayer();
         assertThat(currentPlayer, is(initialPlayer));
     }
 

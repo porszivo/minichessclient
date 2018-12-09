@@ -13,7 +13,7 @@ public class PieceUtil {
      * @param currentBoard current state of board
      * @return color as char
      */
-    public static char getColorFromPosition(int xCord, int yCord, char[][] currentBoard) {
+    public static Color getColorFromPosition(int xCord, int yCord, char[][] currentBoard) {
         return getColorForPiece(currentBoard[yCord][xCord]);
     }
 
@@ -23,12 +23,12 @@ public class PieceUtil {
      * @param piece piece as char
      * @return color as char
      */
-    public static char getColorForPiece(char piece) {
+    public static Color getColorForPiece(char piece) {
         if ((piece >= 'A') && (piece <= 'Z'))
-            return 'W';
+            return Color.WHITE;
         if ((piece >= 'a') && (piece <= 'z'))
-            return 'B';
-        return 'e';
+            return Color.BLACK;
+        return Color.EMPTY;
     }
 
 

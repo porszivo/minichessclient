@@ -7,7 +7,7 @@ public class GameState {
 
     private char[][] board;
     private int moveNumber;
-    private char currentPlayer;
+    private Color currentPlayer;
 
     /**
      * Generate new State with initial settings
@@ -22,7 +22,7 @@ public class GameState {
                 {'R', 'N', 'B', 'Q', 'K'}
         };
         moveNumber = 1;
-        currentPlayer = 'W';
+        currentPlayer = Color.WHITE;
     }
 
     /**
@@ -66,7 +66,7 @@ public class GameState {
      *
      * @return
      */
-    public char getCurrentPlayer() {
+    public Color getCurrentPlayer() {
         return currentPlayer;
     }
 
@@ -76,7 +76,12 @@ public class GameState {
      * @param currentPlayer
      */
     public void setCurrentPlayer(char currentPlayer) {
-        this.currentPlayer = currentPlayer;
+        if (currentPlayer == 'B') {
+            this.currentPlayer = Color.BLACK;
+        }
+        if (currentPlayer == 'W') {
+            this.currentPlayer = Color.WHITE;
+        }
     }
 
     /**
@@ -85,7 +90,7 @@ public class GameState {
      * @return
      */
     public String getCurrentStateToString() {
-        StringBuilder currentState = new StringBuilder(moveNumber + " " + currentPlayer);
+        StringBuilder currentState = new StringBuilder(moveNumber + " " + currentPlayer.getColorCode());
         for (int row = 0; row < 6; row++) {
             currentState.append("\n");
             for (int column = 0; column < 5; column++)
@@ -168,10 +173,10 @@ public class GameState {
         if (Character.toLowerCase(pieceToMove) != 'p') { //only check for pawns
             return false;
         }
-        if (currentPlayer == 'B' && yDestination == 5) { // black pawn reaches end of board
+        if (currentPlayer == Color.BLACK && yDestination == 5) { // black pawn reaches end of board
             return true;
         }
-        if (currentPlayer == 'W' && yDestination == 0) { // white pawn reaches end of board
+        if (currentPlayer == Color.WHITE && yDestination == 0) { // white pawn reaches end of board
             return true;
         }
         return false;
@@ -181,11 +186,11 @@ public class GameState {
      * Switches current Player and increments moveNumber if necessary
      */
     private void switchCurrentPlayer() {
-        if (currentPlayer == 'W') {
-            currentPlayer = 'B';
+        if (currentPlayer == Color.WHITE) {
+            currentPlayer = Color.BLACK;
         } else {
             setMoveNumber(getMoveNumber() + 1);
-            currentPlayer = 'W';
+            currentPlayer = Color.WHITE;
         }
     }
 
@@ -225,7 +230,7 @@ public class GameState {
             System.out.println("Schach-Matt");
             System.exit(0);
         }
-        if ((moveNumber == 40) && (currentPlayer == 'B')) {
+        if ((moveNumber == 40) && (currentPlayer == Color.BLACK)) {
             System.out.println("Unentschieden");
             System.exit(0);
         }
