@@ -8,11 +8,11 @@ Hinweise zur Implementierung von KI Ansätzen (http://wiki.cs.pdx.edu/mc-howto/)
 * GameState hält alle aktuellen Informationen zum Spielstand (Spielfeld, Spieler am Zug, Runde)
 * Game hält die main-Funktion um ein Spiel zu starten
 * Entities
- * Move hält einen Zug mit Start- und Ziel-Koordinaten
- * Square hält die x und y Position
+    * Move hält einen Zug mit Start- und Ziel-Koordinaten
+    * Square hält die x und y Position
 * Klassen, die Spieler repräsentieren
- * PlayerRandom zufalls KI Spieler
- * PlayerHuman menschlischer Spieler
+    * PlayerRandom zufalls KI Spieler
+    * PlayerHuman menschlischer Spieler
 * PieceUtil Hilfsklasse zum ermitteln der Spielerfarbe eines Spielsteins
 * MoveService Serviceklasse zum ermitteln und validieren von Spielzügen
 * Color Enum der Farben
