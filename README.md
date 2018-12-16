@@ -1,8 +1,8 @@
 # minichessclient
 
 ## Links:
-Wiki mit allen wichtigen Grundlagen zu Minichess und Grundlage des Workshops (http://wiki.cs.pdx.edu/minichess/)
-Hinweise zur Implementierung von KI Ansätzen (http://wiki.cs.pdx.edu/mc-howto/)
+* Wiki mit allen wichtigen Grundlagen zu Minichess und Grundlage des Workshops (http://wiki.cs.pdx.edu/minichess/)
+* Hinweise zur Implementierung von KI Ansätzen (http://wiki.cs.pdx.edu/mc-howto/)
 ## Aufbau der Codebase:
 ### de.pki.minichessclient
 * GameState hält alle aktuellen Informationen zum Spielstand (Spielfeld, Spieler am Zug, Runde)
