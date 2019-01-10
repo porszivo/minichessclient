@@ -100,7 +100,7 @@ public class GameState {
     }
 
     /**
-     * Set current state (board, player, moveNumber) by paring a valid String
+     * Set current state (board, player, moveNumber) by parsing a valid String
      *
      * @param stateString valid String of game state
      */
@@ -120,7 +120,7 @@ public class GameState {
     }
 
     /**
-     * Fullfils a move for a valid String
+     * Fulfills a move for a valid String
      *
      * @param move given move as String in format a1-b2
      */
@@ -134,7 +134,7 @@ public class GameState {
     }
 
     /**
-     * Fullfils a move for given move
+     * Fulfills a move for given move
      *
      * @param move given move
      */

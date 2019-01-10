@@ -21,7 +21,7 @@ public class Square {
     }
 
     /**
-     * Generates a new Square from a valid positin String
+     * Generates a new Square from a valid position String
      *
      * @param square Valid String of position
      */

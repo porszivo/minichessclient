@@ -7,7 +7,7 @@ public class Game {
 
     /**
      * Initializes two players with given ki and plays a game of minichess
-     * dirty loop stops if a move finishis the game
+     * dirty loop stops if a move finishes the game
      *
      * @param args
      */
