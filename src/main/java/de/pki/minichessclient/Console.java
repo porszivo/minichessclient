@@ -8,14 +8,27 @@ import java.util.Scanner;
 import de.pki.minichessclient.connector.Client;
 import de.pki.minichessclient.connector.IMCSGame;
 
+/**
+ * This class provides an old-fashion text-based console for the minichess game. This console takes commands from the
+ * command line and sends them to the telnet server via the <code>connector.Client</code>. Furthermore it formats the
+ * responses to be readable in the command line.
+ *
+ */
 public class Console {
 
+  // The Client that sends the commands to the telnet server.
   protected Client client;
+  // Reads input from the command line.
   protected Scanner scanner = new Scanner(System.in);
 
   final protected String host = Messages.getString("Console.host"); //$NON-NLS-1$
   final protected int port = Integer.parseInt(Messages.getString("Console.port")); //$NON-NLS-1$
 
+  /**
+   * Initializes the connection to the telnet server.
+   * 
+   * @throws IOException On any network errors.
+   */
   public Console() throws IOException {
     System.out.println("================\n" //
         + "=   Minichess  =\n" //
@@ -25,6 +38,13 @@ public class Console {
     System.out.println("Connection established.");
   }
 
+  /**
+   * Reads a command from the command line, interprets it and sends it to the telnet server.
+   * Also formats and outputs the response.
+   * 
+   * @return true if further commands shall be requested, false on exit.
+   * @throws IOException On any network errors.
+   */
   public boolean requestCommand() throws IOException {
     System.out.print("> ");
     String in = scanner.nextLine();
@@ -102,6 +122,12 @@ public class Console {
     return builder.toString();
 
   }
+  
+  /**
+   * Proxy methods for accessing the <code>Client</code>. 
+   * Used to handle and format the response and to add some meaningful text around it.
+   * 
+   */
 
   protected String accept(String gameId) throws IOException {
     char response = this.client.accept(gameId);
