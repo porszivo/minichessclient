@@ -37,7 +37,7 @@ public class Client {
      * The fields are exactly called like the commands but uppercase.
      * Thus, the enum.toString().toLowerCase() value is good to be sent over the line.
      */
-    enum IMCSCommands {
+     enum IMCSCommands {
         HELP,
         QUIT,
         ME,
