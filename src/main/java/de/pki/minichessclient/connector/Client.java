@@ -170,6 +170,19 @@ public class Client {
         sendCommand(IMCSCommands.ME, username, password);
         awaitResponse().assertHasCode(201);
     }
+    
+    /**
+     * Try to register at the IMCS with the given username and password.
+     * @param username Username to use for registering to the IMCS.
+     * @param password Password to use for registering to the IMCS.
+     * @throws IOException when the NetworkStream was unexpectedly closed.
+     * @throws RuntimeException When the required response code does not match the one received.
+     */
+    public void register(String username, String password) throws IOException, RuntimeException {
+        sendCommand(IMCSCommands.REGISTER, username, password);
+        System.out.println("Registering");
+        awaitResponse().assertHasCode(202);
+    }
 
     /**
      * Change the currently authenticated user's password to the given new password.

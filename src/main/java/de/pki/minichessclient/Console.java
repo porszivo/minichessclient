@@ -51,6 +51,12 @@ public class Console {
       } else {
         response = "Wrong number of arguments!";
       }
+    } else if (command.trim().toLowerCase().equals(Command.REGISTER.toString().toLowerCase())) {
+      if (parts.length == 3) {
+        response = this.register(parts[1], parts[2]);
+      } else {
+        response = "Wrong number of arguments!";
+      }
     } else if (command.trim().toLowerCase().equals(Command.OFFER.toString().toLowerCase())) {
       if (parts.length == 1) {
         response = this.offerGameAndWait();
@@ -137,9 +143,9 @@ public class Console {
     this.client.login(username, password);
     return "Successfully logged in.";
   }
-  
+
   protected String register(String username, String password) throws IOException, RuntimeException {
-//    this.client.    register(username, password);
+    this.client.register(username, password);
     return "Successfully registered.";
   }
 

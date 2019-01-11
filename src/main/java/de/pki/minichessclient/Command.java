@@ -15,6 +15,7 @@ public enum Command {
   OFFER,
   PASSWORD,
   RATINGS,
+  REGISTER,
   RERATE,
   EXIT
   ;
