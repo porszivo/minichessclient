@@ -75,26 +75,7 @@ public class MoveServiceTest {
     assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
   }
 
-  private Set<Move> getExpectedKingMoves() {
-    Set<Move> expectedMoves = new HashSet<Move>();
-    // south
-    expectedMoves.add(new Move(new Square(2, 2), new Square(2, 3)));
-    // north
-    expectedMoves.add(new Move(new Square(2, 2), new Square(2, 1)));
-    // east
-    expectedMoves.add(new Move(new Square(2, 2), new Square(3, 2)));
-    // west
-    expectedMoves.add(new Move(new Square(2, 2), new Square(1, 2)));
-    // south east
-    expectedMoves.add(new Move(new Square(2, 2), new Square(3, 1)));
-    // south west
-    expectedMoves.add(new Move(new Square(2, 2), new Square(3, 3)));
-    // north east
-    expectedMoves.add(new Move(new Square(2, 2), new Square(1, 3)));
-    // north west
-    expectedMoves.add(new Move(new Square(2, 2), new Square(1, 1)));
-    return expectedMoves;
-  }
+  
   
   @Test
   public void shouldReturnPossibleWhiteQueenMovesOnly() {
@@ -116,6 +97,69 @@ public class MoveServiceTest {
 
     assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
   }
+  
+  @Test
+  public void shouldReturnPossibleWhiteRookMovesOnly() {
+    setFigure('R');
+    Set<Move> expectedMoves = getExpectedRookMoves();
+
+    Vector<Move> possibleMoves = MoveService.getPossibleMoves(xPositionOfFigure, yPositionOfFigure, oneFigureBoard);
+    Set<Move> possibleMovesSet = new HashSet<Move>(possibleMoves);
+    assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
+  }
+
+  @Test
+  public void shouldReturnPossibleBlackRookMovesOnly() {
+    setFigure('r');
+    Set<Move> expectedMoves = getExpectedRookMoves();
+
+    Vector<Move> possibleMoves = MoveService.getPossibleMoves(xPositionOfFigure, yPositionOfFigure, oneFigureBoard);
+    Set<Move> possibleMovesSet = new HashSet<Move>(possibleMoves);
+
+    assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
+  }
+  
+  @Test
+  public void shouldReturnPossibleWhiteBishopMovesOnly() {
+    setFigure('B');
+    Set<Move> expectedMoves = getExpectedBishopMoves();
+
+    Vector<Move> possibleMoves = MoveService.getPossibleMoves(xPositionOfFigure, yPositionOfFigure, oneFigureBoard);
+    Set<Move> possibleMovesSet = new HashSet<Move>(possibleMoves);
+    assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
+  }
+
+  @Test
+  public void shouldReturnPossibleBlackBishopMovesOnly() {
+    setFigure('b');
+    Set<Move> expectedMoves = getExpectedBishopMoves();
+
+    Vector<Move> possibleMoves = MoveService.getPossibleMoves(xPositionOfFigure, yPositionOfFigure, oneFigureBoard);
+    Set<Move> possibleMovesSet = new HashSet<Move>(possibleMoves);
+
+    assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
+  }
+  
+  private Set<Move> getExpectedKingMoves() {
+    Set<Move> expectedMoves = new HashSet<Move>();
+    // south
+    expectedMoves.add(new Move(new Square(2, 2), new Square(2, 3)));
+    // north
+    expectedMoves.add(new Move(new Square(2, 2), new Square(2, 1)));
+    // east
+    expectedMoves.add(new Move(new Square(2, 2), new Square(3, 2)));
+    // west
+    expectedMoves.add(new Move(new Square(2, 2), new Square(1, 2)));
+    // south east
+    expectedMoves.add(new Move(new Square(2, 2), new Square(3, 1)));
+    // south west
+    expectedMoves.add(new Move(new Square(2, 2), new Square(3, 3)));
+    // north east
+    expectedMoves.add(new Move(new Square(2, 2), new Square(1, 3)));
+    // north west
+    expectedMoves.add(new Move(new Square(2, 2), new Square(1, 1)));
+    return expectedMoves;
+  }
 
   private Set<Move> getExpectedQueenMoves() {
     Set<Move> expectedMoves = new HashSet<Move>();
@@ -132,6 +176,54 @@ public class MoveServiceTest {
     // west
     expectedMoves.add(new Move(new Square(2, 2), new Square(1, 2)));
     expectedMoves.add(new Move(new Square(2, 2), new Square(0, 2)));
+    // south east
+    expectedMoves.add(new Move(new Square(2, 2), new Square(3, 1)));
+    expectedMoves.add(new Move(new Square(2, 2), new Square(4, 0)));
+    // south west
+    expectedMoves.add(new Move(new Square(2, 2), new Square(3, 3)));
+    expectedMoves.add(new Move(new Square(2, 2), new Square(4, 4)));
+    // north east
+    expectedMoves.add(new Move(new Square(2, 2), new Square(1, 3)));
+    expectedMoves.add(new Move(new Square(2, 2), new Square(0, 4)));
+    // north west
+    expectedMoves.add(new Move(new Square(2, 2), new Square(1, 1)));
+    expectedMoves.add(new Move(new Square(2, 2), new Square(0, 0)));
+    return expectedMoves;
+  }
+  
+  private Set<Move> getExpectedRookMoves() {
+    Set<Move> expectedMoves = new HashSet<Move>();
+    // south
+    expectedMoves.add(new Move(new Square(2, 2), new Square(2, 3)));
+    expectedMoves.add(new Move(new Square(2, 2), new Square(2, 4)));
+    expectedMoves.add(new Move(new Square(2, 2), new Square(2, 5)));
+    // north
+    expectedMoves.add(new Move(new Square(2, 2), new Square(2, 1)));
+    expectedMoves.add(new Move(new Square(2, 2), new Square(2, 0)));
+    // east
+    expectedMoves.add(new Move(new Square(2, 2), new Square(3, 2)));
+    expectedMoves.add(new Move(new Square(2, 2), new Square(4, 2)));
+    // west
+    expectedMoves.add(new Move(new Square(2, 2), new Square(1, 2)));
+    expectedMoves.add(new Move(new Square(2, 2), new Square(0, 2)));
+   
+    return expectedMoves;
+  }
+  
+  private Set<Move> getExpectedBishopMoves() {
+    Set<Move> expectedMoves = new HashSet<Move>();
+    // south
+    expectedMoves.add(new Move(new Square(2, 2), new Square(2, 3)));
+
+    // north
+    expectedMoves.add(new Move(new Square(2, 2), new Square(2, 1)));
+
+    // east
+    expectedMoves.add(new Move(new Square(2, 2), new Square(3, 2)));
+
+    // west
+    expectedMoves.add(new Move(new Square(2, 2), new Square(1, 2)));
+
     // south east
     expectedMoves.add(new Move(new Square(2, 2), new Square(3, 1)));
     expectedMoves.add(new Move(new Square(2, 2), new Square(4, 0)));
