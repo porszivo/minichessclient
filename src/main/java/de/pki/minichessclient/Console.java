@@ -95,6 +95,8 @@ public class Console {
       response = this.getRatingList();
     } else if (command.trim().toLowerCase().equals(Command.RERATE.toString().toLowerCase())) {
       response = this.rerate();
+    } else if (command.trim().toLowerCase().equals(Command.START.toString().toLowerCase())) {
+      response = this.runGame();
     } else if (command.trim().toLowerCase().equals(Command.EXIT.toString().toLowerCase())) {
       response = this.exit();
       goOn = false;
@@ -189,6 +191,10 @@ public class Console {
     this.client.rerate();
     return "Rerated.";
 
+  }
+  
+  protected String runGame() {
+   return new GameController().runGame();
   }
 
   protected String exit() throws IOException {

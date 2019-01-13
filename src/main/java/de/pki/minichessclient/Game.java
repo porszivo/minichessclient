@@ -14,9 +14,7 @@ public class Game {
    * @param args
    */
   public static void main(String[] args) {
-    GameState gameState = new GameState();
-    PlayerRandom whitePlayer = new PlayerRandom(Color.WHITE);
-    PlayerRandom blackPlayer = new PlayerRandom(Color.BLACK);
+
 
     try {
       Console console = new Console();
@@ -36,19 +34,6 @@ public class Game {
       e.printStackTrace();
     }
 
-    // while (true) {
-    // Move nextMove = null;
-    //
-    // if (gameState.getCurrentPlayer() == Color.WHITE) {
-    // nextMove = whitePlayer.pickMove(gameState.getBoard());
-    // } else if (gameState.getCurrentPlayer() == Color.BLACK) {
-    // nextMove = blackPlayer.pickMove(gameState.getBoard());
-    // }
-    // System.out.println(nextMove);
-    // gameState.moveByMove(nextMove);
-    //
-    // System.out.println("------------------\n");
-    // System.out.println(gameState.getCurrentStateToString() + "\n");
-    // }
+
   }
 }
