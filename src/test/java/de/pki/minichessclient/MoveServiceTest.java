@@ -16,7 +16,6 @@ public class MoveServiceTest {
   private int xPositionOfFigure;
   private int yPositionOfFigure;
 
-
   @Before
   public void setUp() {
     this.oneFigureBoard = new char[][] { //
@@ -26,63 +25,155 @@ public class MoveServiceTest {
         { '.', '.', '.', '.', '.' }, //
         { '.', '.', '.', '.', '.' }, //
         { '.', '.', '.', '.', '.' } };
-        this.xPositionOfFigure = 2;
-        this.yPositionOfFigure = 2;
+    this.xPositionOfFigure = 2;
+    this.yPositionOfFigure = 2;
   }
 
-  
   @Test
   public void shouldReturnPossibleWhitePawnMovesOnly() {
     setFigure('P');
     Set<Move> expectedMoves = new HashSet<Move>();
-    Square start = new Square(2,2);
-    Square end = new Square(2,1);
+    Square start = new Square(2, 2);
+    Square end = new Square(2, 1);
     expectedMoves.add(new Move(start, end));
-    
+
     Vector<Move> possibleMoves = MoveService.getPossibleMoves(xPositionOfFigure, yPositionOfFigure, oneFigureBoard);
     Set<Move> possibleMovesSet = new HashSet<Move>(possibleMoves);
     assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
   }
-  
+
   @Test
   public void shouldReturnPossibleBlackPawnMovesOnly() {
     setFigure('p');
     Set<Move> expectedMoves = new HashSet<Move>();
-    Square start = new Square(2,2);
-    Square end = new Square(2,3);
+    Square start = new Square(2, 2);
+    Square end = new Square(2, 3);
     expectedMoves.add(new Move(start, end));
-    
+
     Vector<Move> possibleMoves = MoveService.getPossibleMoves(xPositionOfFigure, yPositionOfFigure, oneFigureBoard);
     Set<Move> possibleMovesSet = new HashSet<Move>(possibleMoves);
     assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
   }
+
+  @Test
+  public void shouldReturnPossibleWhiteKingMovesOnly() {
+    setFigure('K');
+    Set<Move> expectedMoves = getExpectedKingMoves();
+
+    Vector<Move> possibleMoves = MoveService.getPossibleMoves(xPositionOfFigure, yPositionOfFigure, oneFigureBoard);
+    Set<Move> possibleMovesSet = new HashSet<Move>(possibleMoves);
+    assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
+  }
+
+  @Test
+  public void shouldReturnPossibleBlackKingMovesOnly() {
+    setFigure('k');
+    Set<Move> expectedMoves = getExpectedKingMoves();
+
+    Vector<Move> possibleMoves = MoveService.getPossibleMoves(xPositionOfFigure, yPositionOfFigure, oneFigureBoard);
+    Set<Move> possibleMovesSet = new HashSet<Move>(possibleMoves);
+    assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
+  }
+
+  private Set<Move> getExpectedKingMoves() {
+    Set<Move> expectedMoves = new HashSet<Move>();
+    // south
+    expectedMoves.add(new Move(new Square(2, 2), new Square(2, 3)));
+    // north
+    expectedMoves.add(new Move(new Square(2, 2), new Square(2, 1)));
+    // east
+    expectedMoves.add(new Move(new Square(2, 2), new Square(3, 2)));
+    // west
+    expectedMoves.add(new Move(new Square(2, 2), new Square(1, 2)));
+    // south east
+    expectedMoves.add(new Move(new Square(2, 2), new Square(3, 1)));
+    // south west
+    expectedMoves.add(new Move(new Square(2, 2), new Square(3, 3)));
+    // north east
+    expectedMoves.add(new Move(new Square(2, 2), new Square(1, 3)));
+    // north west
+    expectedMoves.add(new Move(new Square(2, 2), new Square(1, 1)));
+    return expectedMoves;
+  }
   
+  @Test
+  public void shouldReturnPossibleWhiteQueenMovesOnly() {
+    setFigure('Q');
+    Set<Move> expectedMoves = getExpectedQueenMoves();
+
+    Vector<Move> possibleMoves = MoveService.getPossibleMoves(xPositionOfFigure, yPositionOfFigure, oneFigureBoard);
+    Set<Move> possibleMovesSet = new HashSet<Move>(possibleMoves);
+    assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
+  }
+
+  @Test
+  public void shouldReturnPossibleBlackQueenMovesOnly() {
+    setFigure('q');
+    Set<Move> expectedMoves = getExpectedQueenMoves();
+
+    Vector<Move> possibleMoves = MoveService.getPossibleMoves(xPositionOfFigure, yPositionOfFigure, oneFigureBoard);
+    Set<Move> possibleMovesSet = new HashSet<Move>(possibleMoves);
+
+    assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
+  }
+
+  private Set<Move> getExpectedQueenMoves() {
+    Set<Move> expectedMoves = new HashSet<Move>();
+    // south
+    expectedMoves.add(new Move(new Square(2, 2), new Square(2, 3)));
+    expectedMoves.add(new Move(new Square(2, 2), new Square(2, 4)));
+    expectedMoves.add(new Move(new Square(2, 2), new Square(2, 5)));
+    // north
+    expectedMoves.add(new Move(new Square(2, 2), new Square(2, 1)));
+    expectedMoves.add(new Move(new Square(2, 2), new Square(2, 0)));
+    // east
+    expectedMoves.add(new Move(new Square(2, 2), new Square(3, 2)));
+    expectedMoves.add(new Move(new Square(2, 2), new Square(4, 2)));
+    // west
+    expectedMoves.add(new Move(new Square(2, 2), new Square(1, 2)));
+    expectedMoves.add(new Move(new Square(2, 2), new Square(0, 2)));
+    // south east
+    expectedMoves.add(new Move(new Square(2, 2), new Square(3, 1)));
+    expectedMoves.add(new Move(new Square(2, 2), new Square(4, 0)));
+    // south west
+    expectedMoves.add(new Move(new Square(2, 2), new Square(3, 3)));
+    expectedMoves.add(new Move(new Square(2, 2), new Square(4, 4)));
+    // north east
+    expectedMoves.add(new Move(new Square(2, 2), new Square(1, 3)));
+    expectedMoves.add(new Move(new Square(2, 2), new Square(0, 4)));
+    // north west
+    expectedMoves.add(new Move(new Square(2, 2), new Square(1, 1)));
+    expectedMoves.add(new Move(new Square(2, 2), new Square(0, 0)));
+    return expectedMoves;
+  }
+
   private void setFigure(char figure) {
     for (char[] line : this.oneFigureBoard) {
       for (int i = 0; i < line.length; i++) {
-        if (line[i] == 'X') line[i] = figure;
+        if (line[i] == 'X')
+          line[i] = figure;
       }
     }
   }
-  
+
   private String boardToString() {
-      StringBuilder currentState = new StringBuilder();
-      for (int row = 0; row < 6; row++) {
-          currentState.append("\n");
-          for (int column = 0; column < 5; column++)
-              currentState.append(this.oneFigureBoard[row][column]);
-      }
-      return currentState.toString();
+    StringBuilder currentState = new StringBuilder();
+    for (int row = 0; row < 6; row++) {
+      currentState.append("\n");
+      for (int column = 0; column < 5; column++)
+        currentState.append(this.oneFigureBoard[row][column]);
+    }
+    return currentState.toString();
   }
-  
+
   private String setToString(Set<Move> set) {
     StringBuilder builder = new StringBuilder();
     for (Move move : set) {
-      builder.append(move.toString());
+      builder.append(move.toString() + "\n");
     }
     return builder.toString();
   }
-  
+
   private String vectorToString(Vector<Move> vector) {
     StringBuilder builder = new StringBuilder();
     for (Move move : vector) {
@@ -90,7 +181,7 @@ public class MoveServiceTest {
     }
     return builder.toString();
   }
-  
+
   protected boolean compareTwoSets(Set one, Set two) {
     return (one.containsAll(two) && two.containsAll(one));
   }
