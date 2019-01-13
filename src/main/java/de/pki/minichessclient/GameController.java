@@ -1,11 +1,20 @@
 package de.pki.minichessclient;
 
+/**
+ * Controls the automatic game processing.
+ * 
+ * A good point to insert the KI.
+ *
+ */
 public class GameController {
   
-  public GameController() {
-    
-  }
-  
+ 
+  /**
+   * Executes an automatically played game.
+   * KI should be inserted here.
+   *  
+   * @return The game steps until game finishes.
+   */
   public String runGame() {
     GameState gameState = new GameState();
     PlayerRandom whitePlayer = new PlayerRandom(Color.WHITE);
