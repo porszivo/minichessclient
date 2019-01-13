@@ -17,12 +17,12 @@ import de.pki.minichessclient.connector.IMCSGame;
 public class Console {
 
   // The Client that sends the commands to the telnet server.
-  protected Client client;
+  private Client client;
   // Reads input from the command line.
-  protected Scanner scanner = new Scanner(System.in);
+  private Scanner scanner = new Scanner(System.in);
 
-  final protected String host = Messages.getString("Console.host"); //$NON-NLS-1$
-  final protected int port = Integer.parseInt(Messages.getString("Console.port")); //$NON-NLS-1$
+  final private String host = Messages.getString("Console.host"); //$NON-NLS-1$
+  final private int port = Integer.parseInt(Messages.getString("Console.port")); //$NON-NLS-1$
 
   /**
    * Initializes the connection to the telnet server.
@@ -110,7 +110,7 @@ public class Console {
 
   }
 
-  protected String listMethods() {
+  private String listMethods() {
     StringBuilder builder = new StringBuilder();
     String header = "=================\n" //
         + "=   Operations  =\n" //
@@ -131,22 +131,22 @@ public class Console {
    * 
    */
 
-  protected String accept(String gameId) throws IOException {
+  private String accept(String gameId) throws IOException {
     char response = this.client.accept(gameId);
     return "Game started. You are " + response;
   }
 
-  protected String accept(String gameId, String color) throws IOException {
+  private String accept(String gameId, String color) throws IOException {
     this.client.accept(gameId, color.charAt(0));
     return "Game started. You are " + color.charAt(0);
   }
 
-  protected String changePassword(String password) throws IOException {
+  private String changePassword(String password) throws IOException {
     this.client.changePassword(password);
     return "Password successfully changed.";
   }
 
-  protected String getGameList() throws IOException {
+  private String getGameList() throws IOException {
     List<IMCSGame> games = this.client.getGameList();
     StringBuilder builder = new StringBuilder();
     builder.append("Games available: \n");
@@ -157,7 +157,7 @@ public class Console {
 
   }
 
-  protected String getRatingList() throws IOException {
+  private String getRatingList() throws IOException {
     Map<String, Integer> ratings = this.client.getRatingsList();
     StringBuilder builder = new StringBuilder();
     builder.append("Ratings: \n");
@@ -167,42 +167,42 @@ public class Console {
     return builder.toString();
   }
 
-  protected String login(String username, String password) throws IOException, RuntimeException {
+  private String login(String username, String password) throws IOException, RuntimeException {
     this.client.login(username, password);
     return "Successfully logged in.";
   }
 
-  protected String register(String username, String password) throws IOException, RuntimeException {
+  private String register(String username, String password) throws IOException, RuntimeException {
     this.client.register(username, password);
     return "Successfully registered.";
   }
 
-  protected String offerGameAndWait() throws IOException, RuntimeException {
+  private String offerGameAndWait() throws IOException, RuntimeException {
     char color = this.client.offerGameAndWait();
     return "Game started. You play " + color;
   }
 
-  protected String offerGameAndWait(String color) throws IOException, RuntimeException {
+  private String offerGameAndWait(String color) throws IOException, RuntimeException {
     this.client.offerGameAndWait(color.charAt(0));
     return "Game started. You play " + color.charAt(0);
   }
 
-  protected String rerate() throws IOException {
+  private String rerate() throws IOException {
     this.client.rerate();
     return "Rerated.";
 
   }
   
-  protected String runGame() {
+  private String runGame() {
    return new GameController().runGame();
   }
 
-  protected String exit() throws IOException {
+  private String exit() throws IOException {
     this.client.close();
     return "Bye bye!";
   }
 
-  protected void connect(String host, int port) throws IOException {
+  private void connect(String host, int port) throws IOException {
     this.client = new Client(host, port);
   }
 
