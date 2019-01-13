@@ -22,8 +22,8 @@ public class MoveServiceTest {
     this.oneFigureBoard = new char[][] { //
         { '.', '.', '.', '.', '.' }, //
         { '.', '.', '.', '.', '.' }, //
-        { '.', '.', '.', '.', '.' }, //
         { '.', '.', 'X', '.', '.' }, //
+        { '.', '.', '.', '.', '.' }, //
         { '.', '.', '.', '.', '.' }, //
         { '.', '.', '.', '.', '.' } };
         this.xPositionOfFigure = 2;
@@ -36,13 +36,24 @@ public class MoveServiceTest {
     setFigure('P');
     Set<Move> expectedMoves = new HashSet<Move>();
     Square start = new Square(2,2);
+    Square end = new Square(2,1);
+    expectedMoves.add(new Move(start, end));
+    
+    Vector<Move> possibleMoves = MoveService.getPossibleMoves(xPositionOfFigure, yPositionOfFigure, oneFigureBoard);
+    Set<Move> possibleMovesSet = new HashSet<Move>(possibleMoves);
+    assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
+  }
+  
+  @Test
+  public void shouldReturnPossibleBlackPawnMovesOnly() {
+    setFigure('p');
+    Set<Move> expectedMoves = new HashSet<Move>();
+    Square start = new Square(2,2);
     Square end = new Square(2,3);
     expectedMoves.add(new Move(start, end));
     
     Vector<Move> possibleMoves = MoveService.getPossibleMoves(xPositionOfFigure, yPositionOfFigure, oneFigureBoard);
     Set<Move> possibleMovesSet = new HashSet<Move>(possibleMoves);
-    System.out.println("Expected: "+setToString(expectedMoves));
-    System.out.println("Returned: "+vectorToString(possibleMoves));
     assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
   }
   
