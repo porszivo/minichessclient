@@ -27,7 +27,8 @@ public class Console {
   /**
    * Initializes the connection to the telnet server.
    * 
-   * @throws IOException On any network errors.
+   * @throws IOException
+   *           On any network errors.
    */
   public Console() throws IOException {
     System.out.println("================\n" //
@@ -43,7 +44,8 @@ public class Console {
    * Also formats and outputs the response.
    * 
    * @return true if further commands shall be requested, false on exit.
-   * @throws IOException On any network errors.
+   * @throws IOException
+   *           On any network errors.
    */
   public boolean requestCommand() throws IOException {
     System.out.print("> ");
@@ -53,7 +55,8 @@ public class Console {
     boolean goOn = true;
     String response;
 
-    if (command.trim().toLowerCase().equals(Command.ACCEPT.toString().toLowerCase())) {
+    switch (Command.valueOf(command.trim().toUpperCase())) {
+    case ACCEPT:
       if (parts.length == 2) {
         response = this.accept(parts[1]);
       } else if (parts.length == 3) {
@@ -61,23 +64,28 @@ public class Console {
       } else {
         response = "Wrong number of arguments!";
       }
-    } else if (command.trim().toLowerCase().equals(Command.LIST.toString().toLowerCase())) {
+      break;
+    case LIST:
       response = this.getGameList();
-    } else if (command.trim().toLowerCase().equals(Command.HELP.toString().toLowerCase())) {
+      break;
+    case HELP:
       response = this.listMethods();
-    } else if (command.trim().toLowerCase().equals(Command.LOGIN.toString().toLowerCase())) {
+      break;
+    case LOGIN:
       if (parts.length == 3) {
         response = this.login(parts[1], parts[2]);
       } else {
         response = "Wrong number of arguments!";
       }
-    } else if (command.trim().toLowerCase().equals(Command.REGISTER.toString().toLowerCase())) {
+      break;
+    case REGISTER:
       if (parts.length == 3) {
         response = this.register(parts[1], parts[2]);
       } else {
         response = "Wrong number of arguments!";
       }
-    } else if (command.trim().toLowerCase().equals(Command.OFFER.toString().toLowerCase())) {
+      break;
+    case OFFER:
       if (parts.length == 1) {
         response = this.offerGameAndWait();
       } else if (parts.length == 2) {
@@ -85,26 +93,33 @@ public class Console {
       } else {
         response = "Wrong number of arguments!";
       }
-    } else if (command.trim().toLowerCase().equals(Command.PASSWORD.toString().toLowerCase())) {
+      break;
+    case PASSWORD:
       if (parts.length == 1) {
         response = this.changePassword(parts[1]);
       } else {
         response = "Wrong number of arguments!";
       }
-    } else if (command.trim().toLowerCase().equals(Command.RATINGS.toString().toLowerCase())) {
+      break;
+    case RATINGS:
       response = this.getRatingList();
-    } else if (command.trim().toLowerCase().equals(Command.RERATE.toString().toLowerCase())) {
+      break;
+    case RERATE:
       response = this.rerate();
-    } else if (command.trim().toLowerCase().equals(Command.START.toString().toLowerCase())) {
+      break;
+    case START:
       response = this.runGame();
-    } else if (command.trim().toLowerCase().equals(Command.EXIT.toString().toLowerCase())) {
+      break;
+    case EXIT:
       response = this.exit();
       goOn = false;
-
-    } else {
+      break;
+    default:
       response = "Command not recognized. Please try again.";
+      break;
 
     }
+
     System.out.println(response);
     return goOn;
 
@@ -124,9 +139,9 @@ public class Console {
     return builder.toString();
 
   }
-  
+
   /**
-   * Proxy methods for accessing the <code>Client</code>. 
+   * Proxy methods for accessing the <code>Client</code>.
    * Used to handle and format the response and to add some meaningful text around it.
    * 
    */
@@ -192,9 +207,9 @@ public class Console {
     return "Rerated.";
 
   }
-  
+
   private String runGame() {
-   return new GameController().runGame();
+    return new GameController().runGame();
   }
 
   private String exit() throws IOException {
