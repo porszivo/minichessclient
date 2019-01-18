@@ -9,7 +9,7 @@ import de.pki.minichess.game.utils.PieceUtil;
 /**
  * Holds the current state of a minichessgame
  */
-public class GameState {
+public class State {
 
     private char[][] board;
     private int moveNumber;
@@ -18,7 +18,7 @@ public class GameState {
     /**
      * Generate new State with initial settings
      */
-    GameState() {
+    State() {
         board = new char[][]{
                 {'k', 'q', 'b', 'n', 'r'},
                 {'p', 'p', 'p', 'p', 'p'},

@@ -1,7 +1,5 @@
-package de.pki.minichess;
+package de.pki.minichess.game;
 
-import de.pki.minichess.game.Color;
-import de.pki.minichess.game.GameState;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,11 +8,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class StateTest {
 
-    private GameState state;
+    private State state;
 
     @Before
     public void setUp() {
-        state = new GameState();
+        state = new State();
     }
 
     @Test

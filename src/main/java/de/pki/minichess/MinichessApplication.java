@@ -7,10 +7,10 @@ import java.io.IOException;
 /**
  * Application class to run a game of minichess
  */
-public class Game {
+public class MinichessApplication {
 
   /**
-   * Initializes two players with given ki and plays a game of minichess
+   * Initializes two players with given ai and plays a game of minichess
    * dirty loop stops if a move finishes the game
    *
    * @param args

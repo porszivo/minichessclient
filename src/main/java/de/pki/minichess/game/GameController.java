@@ -1,6 +1,6 @@
 package de.pki.minichess.game;
 
-import de.pki.minichess.ki.PlayerRandom;
+import de.pki.minichess.ai.PlayerRandom;
 
 /**
  * Controls the automatic game processing.
@@ -18,7 +18,7 @@ public class GameController {
    * @return The game steps until game finishes.
    */
   public String runGame() {
-    GameState gameState = new GameState();
+    State gameState = new State();
     PlayerRandom whitePlayer = new PlayerRandom(Color.WHITE);
     PlayerRandom blackPlayer = new PlayerRandom(Color.BLACK);
     

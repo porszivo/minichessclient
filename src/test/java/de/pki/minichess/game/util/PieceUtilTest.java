@@ -1,4 +1,4 @@
-package de.pki.minichess;
+package de.pki.minichess.game.util;
 
 import de.pki.minichess.game.Color;
 import de.pki.minichess.game.utils.PieceUtil;

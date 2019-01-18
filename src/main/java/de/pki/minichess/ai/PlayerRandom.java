@@ -1,4 +1,4 @@
-package de.pki.minichess.ki;
+package de.pki.minichess.ai;
 
 import de.pki.minichess.game.Color;
 import de.pki.minichess.game.Move;
@@ -9,7 +9,10 @@ import de.pki.minichess.game.utils.PieceUtil;
 import java.util.Random;
 import java.util.Vector;
 
-public class PlayerRandom {
+/**
+ * Implementation of Random AI Player
+ */
+public class PlayerRandom implements IPlayer {
 
     private Color color;
     private Random rand = new Random();
@@ -23,12 +26,7 @@ public class PlayerRandom {
         this.color = color;
     }
 
-    /**
-     * Picks a move for the player on the given board
-     *
-     * @param board current board to pick a move from
-     * @return
-     */
+    @Override
     public Move pickMove(char[][] board) {
         Vector<Square> currentPlayerPieces = scanPiecesForCurrentPlayer(board);
         Vector<Move> possibleMoves = new Vector<>();
@@ -50,5 +48,4 @@ public class PlayerRandom {
         }
         return ownedPieces;
     }
-
 }

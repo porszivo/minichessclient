@@ -1,6 +1,5 @@
-package de.pki.minichess;
+package de.pki.minichess.game;
 
-import de.pki.minichess.game.Square;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

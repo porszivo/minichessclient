@@ -22,9 +22,6 @@ public class Console {
   // Reads input from the command line.
   private Scanner scanner = new Scanner(System.in);
 
-  final private String host = Messages.getString("Console.host"); //$NON-NLS-1$
-  final private int port = Integer.parseInt(Messages.getString("Console.port")); //$NON-NLS-1$
-
   /**
    * Initializes the connection to the telnet server.
    * 
@@ -35,6 +32,10 @@ public class Console {
     System.out.println("================\n" //
         + "=   Minichess  =\n" //
         + "================\n");
+    //$NON-NLS-1$
+    int port = Integer.parseInt(Messages.getString("Console.port"));
+    //$NON-NLS-1$
+    String host = Messages.getString("Console.host");
     System.out.println("Initializing connection to telnet server " + host + ":" + port);
     this.connect(host, port);
     System.out.println("Connection established.");
