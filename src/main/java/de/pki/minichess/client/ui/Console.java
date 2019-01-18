@@ -1,12 +1,13 @@
-package de.pki.minichessclient;
+package de.pki.minichess.client.ui;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import de.pki.minichessclient.connector.Client;
-import de.pki.minichessclient.connector.IMCSGame;
+import de.pki.minichess.game.GameController;
+import de.pki.minichess.client.connector.Client;
+import de.pki.minichess.client.connector.IMCSGame;
 
 /**
  * This class provides an old-fashion text-based console for the minichess game. This console takes commands from the

@@ -1,4 +1,6 @@
-package de.pki.minichessclient;
+package de.pki.minichess.game;
+
+import de.pki.minichess.ki.PlayerRandom;
 
 /**
  * Controls the automatic game processing.

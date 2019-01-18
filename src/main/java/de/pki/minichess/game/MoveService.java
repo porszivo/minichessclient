@@ -1,4 +1,6 @@
-package de.pki.minichessclient;
+package de.pki.minichess.game;
+
+import de.pki.minichess.game.utils.PieceUtil;
 
 import java.util.Vector;
 

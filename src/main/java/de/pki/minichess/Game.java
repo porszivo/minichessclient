@@ -1,4 +1,6 @@
-package de.pki.minichessclient;
+package de.pki.minichess;
+
+import de.pki.minichess.client.ui.Console;
 
 import java.io.IOException;
 

@@ -1,5 +1,7 @@
-package de.pki.minichessclient;
+package de.pki.minichess;
 
+import de.pki.minichess.game.Color;
+import de.pki.minichess.game.GameState;
 import org.junit.Before;
 import org.junit.Test;
 

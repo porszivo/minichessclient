@@ -2,7 +2,7 @@
 // Copyright (c) 2017 Markus Ebner <markus-ebner@web.de>
 // Licensed under the "MIT License"
 // Please see the file COPYING at http://github.com/BartMassey/imcs
-package de.pki.minichessclient.connector;
+package de.pki.minichess.client.connector;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * Provides a quite complete interface to the Internet MiniChess Server.
  * <p>
  * See the <a href="http://wiki.cs.pdx.edu/minichess">MiniChess Page</a> for information.
- * The basic workflow is to create a client object (which conntects to the IMCS).
+ * The basic workflow is to create a connector object (which conntects to the IMCS).
  * Login with your credentials, and then either join a game with the accept() method
  * or use the offerAndWait() method to offer an own game.
  *
@@ -58,7 +58,7 @@ public class Client {
     /* ######################## */
 
     /**
-     * Create a new client connected to IMCS and logged on.
+     * Create a new connector connected to IMCS and logged on.
      * @param server  hostname or IP address of IMCS server, usually "imcs.svcs.cs.pdx.edu"
      * @param port  server port number, usually 3589
      * @throws IOException when the NetworkStream was unexpectedly closed.
@@ -71,11 +71,11 @@ public class Client {
         IMCSResponse versionResponse = awaitResponse();
         versionResponse.assertHasCode(100);
         if (!versionResponse.message.equals("imcs 2.5"))
-            throw new Error("client: imcs version mismatch");
+            throw new Error("connector: imcs version mismatch");
     }
 
     /**
-     * Create a new client connected to IMCS and logged on.
+     * Create a new connector connected to IMCS and logged on.
      * @param server  hostname or IP address of IMCS server, usually "imcs.svcs.cs.pdx.edu"
      * @param portStr  server port number string, usually "3589"
      * @throws IOException when the NetworkStream was unexpectedly closed.
@@ -268,7 +268,7 @@ public class Client {
 
     /**
      * Offer a default match where the Server selects the player.
-     * @return Player (either W or B) the server chose for this client.
+     * @return Player (either W or B) the server chose for this connector.
      * @throws IOException when the NetworkStream was unexpectedly closed.
      * @throws RuntimeException When the required response code does not match the one received.
      */
@@ -308,7 +308,7 @@ public class Client {
     /**
      * Accept an offered match with the given gameId, letting the server select the players.
      * @param gameId Id of the offered game to join.
-     * @return Player (either W or B) the server chose for this client.
+     * @return Player (either W or B) the server chose for this connector.
      * @throws IOException when the NetworkStream was unexpectedly closed.
      * @throws RuntimeException When the required response code does not match the one received.
      */

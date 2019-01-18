@@ -1,4 +1,6 @@
-package de.pki.minichessclient;
+package de.pki.minichess.game.utils;
+
+import de.pki.minichess.game.Color;
 
 /**
  * Helper Class to support piececolor detection.

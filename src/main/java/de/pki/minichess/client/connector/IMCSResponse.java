@@ -1,7 +1,7 @@
 // Copyright (c) 2017 Markus Ebner <markus-ebner@web.de>
 // Licensed under the "MIT License"
 // Please see the file COPYING at http://github.com/BartMassey/imcs
-package de.pki.minichessclient.connector;
+package de.pki.minichess.client.connector;
 
 import java.io.IOException;
 import java.util.regex.Matcher;

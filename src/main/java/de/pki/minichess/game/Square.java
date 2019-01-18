@@ -1,4 +1,4 @@
-package de.pki.minichessclient;
+package de.pki.minichess.game;
 
 import java.util.Objects;
 
@@ -15,7 +15,7 @@ public class Square {
      * @param x x position
      * @param y y position
      */
-    Square(int x, int y) {
+    public Square(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -25,7 +25,7 @@ public class Square {
      *
      * @param square Valid String of position
      */
-    Square(String square) {
+    public Square(String square) {
         if (isValidSquareString(square)) {
             char[] pos = square.toCharArray();
             this.x = transXString(pos[0]);

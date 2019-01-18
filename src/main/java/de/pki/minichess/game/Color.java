@@ -1,4 +1,4 @@
-package de.pki.minichessclient;
+package de.pki.minichess.game;
 
 public enum Color {
     WHITE('W'), BLACK('B'), EMPTY('e');

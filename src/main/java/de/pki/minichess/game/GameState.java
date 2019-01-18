@@ -1,4 +1,10 @@
-package de.pki.minichessclient;
+package de.pki.minichess.game;
+
+import de.pki.minichess.game.Color;
+import de.pki.minichess.game.Move;
+import de.pki.minichess.game.MoveService;
+import de.pki.minichess.game.Square;
+import de.pki.minichess.game.utils.PieceUtil;
 
 /**
  * Holds the current state of a minichessgame

@@ -1,4 +1,4 @@
-package de.pki.minichessclient;
+package de.pki.minichess.game;
 
 import java.util.Objects;
 

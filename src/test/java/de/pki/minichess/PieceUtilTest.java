@@ -1,5 +1,7 @@
-package de.pki.minichessclient;
+package de.pki.minichess;
 
+import de.pki.minichess.game.Color;
+import de.pki.minichess.game.utils.PieceUtil;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

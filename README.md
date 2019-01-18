@@ -4,7 +4,7 @@
 * Wiki mit allen wichtigen Grundlagen zu Minichess und Grundlage des Workshops (http://wiki.cs.pdx.edu/minichess/)
 * Hinweise zur Implementierung von KI Ansätzen (http://wiki.cs.pdx.edu/mc-howto/)
 ## Aufbau der Codebase:
-### de.pki.minichessclient
+### de.pki.minichess
 * GameState hält alle aktuellen Informationen zum Spielstand (Spielfeld, Spieler am Zug, Runde)
 * Game hält die main-Funktion um ein Spiel zu starten
 * Entities
@@ -16,5 +16,5 @@
 * PieceUtil Hilfsklasse zum ermitteln der Spielerfarbe eines Spielsteins
 * MoveService Serviceklasse zum ermitteln und validieren von Spielzügen
 * Color Enum der Farben
-### de.pki.minichessclient.connector
+### de.pki.minichess.client.connector
 * Klassen im eine Verbindung mit einem imcs (Minischachserverimplementierung) herstellen zu können

@@ -1,4 +1,10 @@
-package de.pki.minichessclient;
+package de.pki.minichess.ki;
+
+import de.pki.minichess.game.Color;
+import de.pki.minichess.game.Move;
+import de.pki.minichess.game.MoveService;
+import de.pki.minichess.game.Square;
+import de.pki.minichess.game.utils.PieceUtil;
 
 import java.util.Random;
 import java.util.Vector;
@@ -13,7 +19,7 @@ public class PlayerRandom {
      *
      * @param color color of the player
      */
-    PlayerRandom(Color color) {
+    public PlayerRandom(Color color) {
         this.color = color;
     }
 
