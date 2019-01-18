@@ -37,7 +37,7 @@ public class Client {
      * The fields are exactly called like the commands but uppercase.
      * Thus, the enum.toString().toLowerCase() value is good to be sent over the line.
      */
-    enum IMCSCommands {
+     enum IMCSCommands {
         HELP,
         QUIT,
         ME,
@@ -169,6 +169,19 @@ public class Client {
     public void login(String username, String password) throws IOException, RuntimeException {
         sendCommand(IMCSCommands.ME, username, password);
         awaitResponse().assertHasCode(201);
+    }
+    
+    /**
+     * Try to register at the IMCS with the given username and password.
+     * @param username Username to use for registering to the IMCS.
+     * @param password Password to use for registering to the IMCS.
+     * @throws IOException when the NetworkStream was unexpectedly closed.
+     * @throws RuntimeException When the required response code does not match the one received.
+     */
+    public void register(String username, String password) throws IOException, RuntimeException {
+        sendCommand(IMCSCommands.REGISTER, username, password);
+        System.out.println("Registering");
+        awaitResponse().assertHasCode(202);
     }
 
     /**

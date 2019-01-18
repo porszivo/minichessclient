@@ -100,7 +100,7 @@ public class GameState {
     }
 
     /**
-     * Set current state (board, player, moveNumber) by paring a valid String
+     * Set current state (board, player, moveNumber) by parsing a valid String
      *
      * @param stateString valid String of game state
      */
@@ -120,7 +120,7 @@ public class GameState {
     }
 
     /**
-     * Fullfils a move for a valid String
+     * Fulfills a move for a valid String
      *
      * @param move given move as String in format a1-b2
      */
@@ -134,15 +134,16 @@ public class GameState {
     }
 
     /**
-     * Fullfils a move for given move
+     * Fulfills a move for given move
      *
      * @param move given move
+     * @return true if game over, false else
      */
-    public void moveByMove(Move move) {
-
+    public boolean moveByMove(Move move) {
+      
         char pieceToMove = board[move.getFrom().getY()][move.getFrom().getX()];
         if (isValidStartPiece(pieceToMove) && MoveService.isMoveValid(move, board)) {
-            checkForGameOver(move);
+            if (checkForGameOver(move)) return true;
             if (canPieceBePromoted(pieceToMove, move.getTo().getY())) {
                 pieceToMove = promotePawn(pieceToMove);
             }
@@ -150,6 +151,7 @@ public class GameState {
             board[move.getFrom().getY()][move.getFrom().getX()] = '.';
             switchCurrentPlayer();
         }
+        return false;
     }
 
     /**
@@ -221,19 +223,23 @@ public class GameState {
 
     /**
      * checks if given move finishes the game
+     * 
+     * TODO: Should return the state (matt, unentschieden, ongoing) instead of a boolean.
      *
+     *@return true if game over, false else
      * @param move
      */
-    private void checkForGameOver(Move move) {
+    private boolean checkForGameOver(Move move) {
         char targetPiece = Character.toLowerCase(board[move.getTo().getY()][move.getTo().getX()]);
         if (targetPiece == 'k') {
             System.out.println("Schach-Matt");
-            System.exit(0);
+            return true;
         }
         if ((moveNumber == 40) && (currentPlayer == Color.BLACK)) {
             System.out.println("Unentschieden");
-            System.exit(0);
+            return true;
         }
+        return false;
     }
 }
 
