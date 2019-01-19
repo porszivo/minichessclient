@@ -10,7 +10,7 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class MoveServiceTest {
+public class MoveServiceTest extends AbstractMoveServiceTest {
 
   private char[][] oneFigureBoard;
   private int xPositionOfFigure;
@@ -285,34 +285,6 @@ public class MoveServiceTest {
     }
   }
 
-  private String boardToString() {
-    StringBuilder currentState = new StringBuilder();
-    for (int row = 0; row < 6; row++) {
-      currentState.append("\n");
-      for (int column = 0; column < 5; column++)
-        currentState.append(this.oneFigureBoard[row][column]);
-    }
-    return currentState.toString();
-  }
-
-  private String setToString(Set<Move> set) {
-    StringBuilder builder = new StringBuilder();
-    for (Move move : set) {
-      builder.append(move.toString() + "\n");
-    }
-    return builder.toString();
-  }
-
-  private String vectorToString(Vector<Move> vector) {
-    StringBuilder builder = new StringBuilder();
-    for (Move move : vector) {
-      builder.append(move.toString());
-    }
-    return builder.toString();
-  }
-
-  protected boolean compareTwoSets(Set one, Set two) {
-    return (one.containsAll(two) && two.containsAll(one));
-  }
+  
 
 }
