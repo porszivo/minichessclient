@@ -19,8 +19,8 @@ public class MoveServiceBeatTest extends AbstractMoveServiceTest {
   @Before
   public void setUp() {
     this.board = new char[][] { //
-        { '.', '.', '.', '.', '.' }, //
-        { '.', '.', 'G', 'H', '.' }, //
+        { '.', 'I', '.', '.', '.' }, //
+        { '.', '.', 'G', 'H', 'J' }, //
         { 'F', '.', 'X', 'E', '.' }, //
         { 'D', 'A', 'B', '.', '.' }, //
         { '.', 'C', '.', '.', '.' }, //
@@ -87,6 +87,82 @@ public class MoveServiceBeatTest extends AbstractMoveServiceTest {
 
     assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
   }
+  
+  /**
+   * Checks if the white knight can jump over own and enemy pieces. Checks if it beats correctly, i.e. only enemies.
+   * 
+   * Field looks like:
+   * 
+   *    { '.', 'p', '.', '.', '.' }, //
+   *    { '.', '.', 'R', 'R', 'K' }, //
+   *    { 'r', '.', 'N', '.', '.' }, //
+   *    { 'P', 'Q', 'k', '.', '.' }, //
+   *    { '.', 'q', '.', '.', '.' }, //
+   *    { '.', '.', '.', '.', '.' }
+   * 
+   */
+  @Test
+  public void shouldReturnPossibleWhiteKnightMovesOnlyWhileBeatingAndBlocked() {
+    setFigure('X', 'N');
+    setOtherFigures("QkqP.rRRpK".toCharArray());
+    Set<Move> expectedMoves = new HashSet<Move>();
+    Square start = new Square(2, 2);
+    Square end = new Square(1, 4);
+    expectedMoves.add(new Move(start, end));
+    end = new Square(3, 4);
+    expectedMoves.add(new Move(start, end));
+    end = new Square(4, 3);
+    expectedMoves.add(new Move(start, end));
+    end = new Square(0, 1);
+    expectedMoves.add(new Move(start, end));
+    end = new Square(1, 0);
+    expectedMoves.add(new Move(start, end));
+    end = new Square(3, 0);
+    expectedMoves.add(new Move(start, end));
+    
+    Vector<Move> possibleMoves = MoveService.getPossibleMoves(xPositionOfFigure, yPositionOfFigure, board);
+    Set<Move> possibleMovesSet = new HashSet<Move>(possibleMoves);
+    
+    assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
+  }
+  
+  /**
+   * Checks if the white knight can jump over own and enemy pieces. Checks if it beats correctly, i.e. only enemies.
+   * 
+   * Field looks like:
+   * 
+   *    { '.', 'P', '.', '.', '.' }, //
+   *    { '.', '.', 'r', 'r', 'k' }, //
+   *    { 'R', '.', 'n', '.', '.' }, //
+   *    { 'p', 'q', 'K', '.', '.' }, //
+   *    { '.', 'Q', '.', '.', '.' }, //
+   *    { '.', '.', '.', '.', '.' }
+   * 
+   */
+  @Test
+  public void shouldReturnPossibleBlackKnightMovesOnlyWhileBeatingAndBlocked() {
+    setFigure('X', 'n');
+    setOtherFigures("qKQp.RrrPk".toCharArray());
+    Set<Move> expectedMoves = new HashSet<Move>();
+    Square start = new Square(2, 2);
+    Square end = new Square(1, 4);
+    expectedMoves.add(new Move(start, end));
+    end = new Square(3, 4);
+    expectedMoves.add(new Move(start, end));
+    end = new Square(4, 3);
+    expectedMoves.add(new Move(start, end));
+    end = new Square(0, 1);
+    expectedMoves.add(new Move(start, end));
+    end = new Square(1, 0);
+    expectedMoves.add(new Move(start, end));
+    end = new Square(3, 0);
+    expectedMoves.add(new Move(start, end));
+    
+    Vector<Move> possibleMoves = MoveService.getPossibleMoves(xPositionOfFigure, yPositionOfFigure, board);
+    Set<Move> possibleMovesSet = new HashSet<Move>(possibleMoves);
+    
+    assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
+  }
 
   private void setOtherFigures(char[] others) {
     // Starting with A (ascii 65)
@@ -104,6 +180,11 @@ public class MoveServiceBeatTest extends AbstractMoveServiceTest {
           line[i] = figure;
       }
     }
+  }
+  
+  private void printExpectedAndPossibleMoves(Set<Move> expected, Set<Move> possible) {
+    System.out.println("Expected: "+ setToString(expected));
+    System.out.println("Possible: "+ setToString(possible));
   }
 
 }
