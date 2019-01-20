@@ -58,6 +58,35 @@ public class MoveServiceBeatTest extends AbstractMoveServiceTest {
 
     assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
   }
+  
+  @Test
+  public void shouldReturnPossibleBlackPawnMovesOnlyWhileBeating() {
+    setFigure('X', 'p');
+    setOtherFigures("Q.PPPR.R".toCharArray());
+    Set<Move> expectedMoves = new HashSet<Move>();
+    Square start = new Square(2, 2);
+    Square end = new Square(2, 3);
+    expectedMoves.add(new Move(start, end));
+    start = new Square(2, 2);
+    end = new Square(1, 3);
+    expectedMoves.add(new Move(start, end));
+
+    Vector<Move> possibleMoves = MoveService.getPossibleMoves(xPositionOfFigure, yPositionOfFigure, board);
+    Set<Move> possibleMovesSet = new HashSet<Move>(possibleMoves);
+    assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
+  }
+  
+  @Test
+  public void shouldReturnPossibleBlackPawnMovesOnlyWhileBlocked() {
+    setFigure('X', 'p');
+    setOtherFigures("pkppprQK".toCharArray());
+    Set<Move> expectedMoves = new HashSet<Move>();
+
+    Vector<Move> possibleMoves = MoveService.getPossibleMoves(xPositionOfFigure, yPositionOfFigure, board);
+    Set<Move> possibleMovesSet = new HashSet<Move>(possibleMoves);
+
+    assertThat(compareTwoSets(possibleMovesSet, expectedMoves), is(true));
+  }
 
   private void setOtherFigures(char[] others) {
     // Starting with A (ascii 65)
