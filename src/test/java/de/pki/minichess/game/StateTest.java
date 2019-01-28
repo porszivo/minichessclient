@@ -125,5 +125,19 @@ public class StateTest {
         String currentState = state.getCurrentStateToString();
         assertThat(currentState, is(expectedState));
     }
+
+    @Test
+    public void shouldEvaluateScores() {
+        int[] currentValue = state.eval();
+        int[] expectedValue = {2500,2500};
+        assertThat(currentValue, is(expectedValue));
+        state.moveByString("a2-a3");
+        state.moveByString("b5-b4");
+        state.moveByString("a3-b4");
+        currentValue = state.eval();
+        expectedValue[0] = 2500;
+        expectedValue[1] = 2400;
+        assertThat(currentValue, is(expectedValue));
+    }
 }
 

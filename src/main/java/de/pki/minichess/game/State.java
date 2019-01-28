@@ -1,9 +1,5 @@
 package de.pki.minichess.game;
 
-import de.pki.minichess.game.Color;
-import de.pki.minichess.game.Move;
-import de.pki.minichess.game.MoveService;
-import de.pki.minichess.game.Square;
 import de.pki.minichess.game.utils.PieceUtil;
 
 /**
@@ -18,7 +14,7 @@ public class State {
     /**
      * Generate new State with initial settings
      */
-    State() {
+    public State() {
         board = new char[][]{
                 {'k', 'q', 'b', 'n', 'r'},
                 {'p', 'p', 'p', 'p', 'p'},
@@ -146,7 +142,7 @@ public class State {
      * @return true if game over, false else
      */
     public boolean moveByMove(Move move) {
-      
+        if(move == null) return true;
         char pieceToMove = board[move.getFrom().getY()][move.getFrom().getX()];
         if (isValidStartPiece(pieceToMove) && MoveService.isMoveValid(move, board)) {
             if (checkForGameOver(move)) return true;
@@ -229,11 +225,11 @@ public class State {
 
     /**
      * checks if given move finishes the game
-     * 
+     * <p>
      * TODO: Should return the state (matt, unentschieden, ongoing) instead of a boolean.
      *
-     *@return true if game over, false else
      * @param move
+     * @return true if game over, false else
      */
     private boolean checkForGameOver(Move move) {
         char targetPiece = Character.toLowerCase(board[move.getTo().getY()][move.getTo().getX()]);
@@ -246,6 +242,20 @@ public class State {
             return true;
         }
         return false;
+    }
+
+    public int[] eval() {
+        int[] score = {0, 0};
+        for (char[] zeile : board) {
+            for (char zelle : zeile) {
+                if(PieceUtil.getColorForPiece(zelle).equals(Color.WHITE)) {
+                    score[0] += PieceUtil.getValueOnPosition(zelle);
+                } else {
+                    score[1] += PieceUtil.getValueOnPosition(zelle);
+                }
+            }
+        }
+        return score;
     }
 }
 

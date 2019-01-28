@@ -33,5 +33,23 @@ public class PieceUtil {
         return Color.EMPTY;
     }
 
+    public static int getValueOnPosition(char piece) {
+        piece = Character.toLowerCase(piece);
+        switch (piece) {
+            case 'p':
+                return 100;
+            case 'r':
+                return 500;
+            case 'n':
+                return 300;
+            case 'b':
+                return 300;
+            case 'q':
+                return 900;
+            default:
+                return 2500;
+        }
+    }
+
 
 }

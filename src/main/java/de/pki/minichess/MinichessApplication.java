@@ -1,6 +1,7 @@
 package de.pki.minichess;
 
 import de.pki.minichess.client.ui.Console;
+import de.pki.minichess.game.GameController;
 
 import java.io.IOException;
 
@@ -17,7 +18,8 @@ public class MinichessApplication {
    */
   public static void main(String[] args) {
 
-
+    //GameController controller = new GameController();
+    //controller.runGame();
     try {
       Console console = new Console();
       boolean goOn = true;
@@ -27,6 +29,7 @@ public class MinichessApplication {
         } catch (RuntimeException e) {
           // It's strange but the Client throws RuntimeExceptions as business exceptions. So we just handle them
           // smoothly by printing out the message and keeping the application running.
+          System.out.println("ERROR: " + e.getStackTrace());
           System.out.println("ERROR: " + e.getMessage());
         }
 

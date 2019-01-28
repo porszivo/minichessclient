@@ -104,6 +104,37 @@ public class Square {
         return offsetBoardY - (Character.getNumericValue(pos));
     }
 
+    @Override
+    public String toString() {
+        return xToChar(getX()) + "" + yToChar(getY());
+    }
+
+    private String xToChar(int x) {
+        String returnValue = "";
+        switch(x) {
+            case 0:
+                returnValue = "a";
+                break;
+            case 1:
+                returnValue = "b";
+                break;
+            case 2:
+                returnValue = "c";
+                break;
+            case 3:
+                returnValue = "d";
+                break;
+            case 4:
+                returnValue = "e";
+                break;
+        }
+        return returnValue;
+    }
+
+    private String yToChar(int y) {
+        return 6-y + "";
+    }
+
     private boolean isValidSquareString(String square) {
         return square.matches("([a-e][1-6])");
     }

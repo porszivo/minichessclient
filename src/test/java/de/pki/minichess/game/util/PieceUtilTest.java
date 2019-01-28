@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class PieceUtilTest {
     @Test
@@ -27,5 +28,18 @@ public class PieceUtilTest {
         Color expectedColor = Color.EMPTY;
         Color resultColor = PieceUtil.getColorForPiece('.');
         assertThat(resultColor, is(expectedColor));
+    }
+
+    @Test
+    public void shouldReturnValidPieceValues() {
+
+        int resultValue = PieceUtil.getValueOnPosition('k');
+        assertEquals(resultValue, 0);
+
+        resultValue = PieceUtil.getValueOnPosition('j');
+        assertEquals(resultValue, 0);
+
+        resultValue = PieceUtil.getValueOnPosition('B');
+        assertEquals(resultValue, 300);
     }
 }

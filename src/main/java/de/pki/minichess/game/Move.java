@@ -20,6 +20,11 @@ public class Move {
         this.to = to;
     }
 
+    Move(String move) {
+        this.from = new Square(move.substring(0,2));
+        this.to = new Square(move.substring(move.length()-2));
+    }
+
     /**
      * Getter starting position
      *
@@ -44,7 +49,7 @@ public class Move {
      * @return
      */
     public String toString() {
-        return from.getX() + "," + from.getY() + "-" + to.getX() + "," + to.getY();
+        return from + "-" + to;
     }
 
     /**

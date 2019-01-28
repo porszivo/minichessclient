@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import de.pki.minichess.game.Color;
 import de.pki.minichess.game.GameController;
 import de.pki.minichess.client.connector.Client;
 import de.pki.minichess.client.connector.IMCSGame;
@@ -21,6 +22,8 @@ public class Console {
   private Client client;
   // Reads input from the command line.
   private Scanner scanner = new Scanner(System.in);
+
+  private Color color = Color.WHITE;
 
   /**
    * Initializes the connection to the telnet server.
@@ -110,7 +113,7 @@ public class Console {
       response = this.rerate();
       break;
     case START:
-      response = this.runGame();
+      response = this.runGame(this.color);
       break;
     case EXIT:
       response = this.exit();
@@ -150,6 +153,9 @@ public class Console {
 
   private String accept(String gameId) throws IOException {
     char response = this.client.accept(gameId);
+    // wenn ich weiß bin, dann game start ansonsten warte
+    this.color = response == 'W' ? Color.WHITE : Color.BLACK;
+    this.runGame(this.color);
     return "Game started. You are " + response;
   }
 
@@ -196,11 +202,15 @@ public class Console {
 
   private String offerGameAndWait() throws IOException, RuntimeException {
     char color = this.client.offerGameAndWait();
+    this.color = color == 'W' ? Color.WHITE : Color.BLACK;
+    this.runGame(this.color);
     return "Game started. You play " + color;
   }
 
   private String offerGameAndWait(String color) throws IOException, RuntimeException {
     this.client.offerGameAndWait(color.charAt(0));
+    this.color = color.charAt(0) == 'W' ? Color.WHITE : Color.BLACK;
+    this.runGame(this.color);
     return "Game started. You play " + color.charAt(0);
   }
 
@@ -210,8 +220,8 @@ public class Console {
 
   }
 
-  private String runGame() {
-    return new GameController().runGame();
+  private String runGame(Color color) {
+    return new GameController().runGame(color, this.client);
   }
 
   private String exit() throws IOException {
