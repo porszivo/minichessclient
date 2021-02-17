@@ -7,6 +7,8 @@ import de.pki.minichess.game.Color;
  */
 public class PieceUtil {
 
+	private PieceUtil() {}
+
     /**
      * Returns color for a given position on a given board
      *
@@ -41,10 +43,9 @@ public class PieceUtil {
             case 'r':
                 return 500;
             case 'n':
-                return 300;
-            case 'b':
-                return 300;
-            case 'q':
+			case 'b':
+				return 300;
+			case 'q':
                 return 900;
             default:
                 return 2500;

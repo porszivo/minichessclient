@@ -2,6 +2,8 @@ package de.pki.minichess.game;
 
 import de.pki.minichess.game.utils.PieceUtil;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -9,11 +11,9 @@ import java.util.Vector;
  */
 public class MoveService {
 
-    private enum Capture {
-        TRUE, FALSE, ONLY
-    }
+	private MoveService() {}
 
-    /**
+	/**
      * Checks if a given move is valid on a given board.
      *
      * @param move  move to validate
@@ -74,6 +74,10 @@ public class MoveService {
                 moves.addAll(moveScan(xStart, yStart, 1, direction, Capture.ONLY, true, currentBoard));
                 moves.addAll(moveScan(xStart, yStart, 0, direction, Capture.FALSE, true, currentBoard));
                 break;
+			default:
+				System.out.println("Error");
+				break;
+
         }
         return moves;
     }
@@ -97,8 +101,8 @@ public class MoveService {
      * @param currentBoard state of the current board
      * @return vector of possible moves
      */
-    private static Vector<Move> symmscan(int xStart, int yStart, int xDirection, int yDirection, Capture capture, boolean stopShort, char[][] currentBoard) {
-        Vector<Move> moves = new Vector<>();
+    private static List<Move> symmscan(int xStart, int yStart, int xDirection, int yDirection, Capture capture, boolean stopShort, char[][] currentBoard) {
+        List<Move> moves = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             moves.addAll(moveScan(xStart, yStart, xDirection, yDirection, capture, stopShort, currentBoard));
 
@@ -122,11 +126,11 @@ public class MoveService {
      * @param currentBoard state of the current board
      * @return vector of possible moves
      */
-    private static Vector<Move> moveScan(int xStart, int yStart, int xDirection, int yDirection, Capture capture, boolean stopShort, char[][] currentBoard) {
+    private static List<Move> moveScan(int xStart, int yStart, int xDirection, int yDirection, Capture capture, boolean stopShort, char[][] currentBoard) {
         int xDest = xStart;
         int yDest = yStart;
         Color color = PieceUtil.getColorFromPosition(xStart, yStart, currentBoard);
-        Vector<Move> moves = new Vector<>();
+		List<Move> moves = new ArrayList<>();
         do {
             xDest += xDirection;
             yDest += yDirection;

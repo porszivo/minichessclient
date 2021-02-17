@@ -6,6 +6,7 @@ import java.util.Objects;
  * Move Class which holds the starting and destination position
  */
 public class Move {
+
     private Square from;
     private Square to;
 

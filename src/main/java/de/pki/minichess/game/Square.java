@@ -1,11 +1,16 @@
 package de.pki.minichess.game;
 
 import java.util.Objects;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * Holds Position
  */
 public class Square {
+
+	private static final Log LOG = LogFactory.getLog(Square.class);
+
     private int x;
     private int y;
 
@@ -69,6 +74,9 @@ public class Square {
             case 'e':
                 mappedXCoordinate = 4;
                 break;
+			default:
+				LOG.error("Move is not supported");
+				break;
         }
 
         return mappedXCoordinate;
@@ -127,6 +135,9 @@ public class Square {
             case 4:
                 returnValue = "e";
                 break;
+			default:
+				LOG.error("Invalid Char");
+				break;
         }
         return returnValue;
     }
